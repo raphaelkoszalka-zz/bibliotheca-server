@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import auth from './auth';
 import basket from './basket'
+import history from './history'
 
 const router = new Router();
 
@@ -30,5 +31,6 @@ const router = new Router();
 router.use('/auth', auth);
 
 router.use('/basket', basket)
+router.use('/history', history)
 
 export default router;

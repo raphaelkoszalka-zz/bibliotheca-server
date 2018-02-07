@@ -1,6 +1,5 @@
 # Bibliotheca
-### https://bibliotheca.online |
-
+https://bibliotheca.online
 Bibliotheca REST API
 
 ### how to

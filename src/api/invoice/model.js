@@ -7,10 +7,7 @@ const invoiceSchema = new Schema({
   price: {
     type: String
   },
-  items { title: {
-    type: String
-  },
-  price }: {
+  items : {
     type: String
   },
   userName: {
@@ -34,8 +31,7 @@ invoiceSchema.methods = {
       id: this.id,
       html: this.html,
       price: this.price,
-      items { title: this.items { title,
-      price }: this.price },
+      items: this.items,
       userName: this.userName,
       userId: this.userId,
       createdAt: this.createdAt,

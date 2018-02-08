@@ -22,12 +22,12 @@ Bibliotheca REST API
 - npm run prod
 
 ### features
-- User registration API - Using passport 
-- Social login API - Google
-- Listing query strings - q, page, limit, fields etc. already provided by querymen
-- Query string validator - Using querymen
-- Request body validator - Using bodymen
-- Standard error responses - Using querymen and bodymen error handlers
+- user registration API - passport 
+- social login API - Google
+- listing query strings - q, page, limit, fields etc. already provided by querymen
+- query string validator - querymen
+- request body validator - bodymen
+- standard error responses - querymen and bodymen error handlers
 
 
 ### code scaffolded (for prototyping only) with Yeoman

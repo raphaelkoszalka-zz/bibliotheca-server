@@ -14,7 +14,7 @@ Bibliotheca REST API
 ### dev
 
 - start mongodb
-- npm run dev;
+- npm run dev
 
 ### prod
 

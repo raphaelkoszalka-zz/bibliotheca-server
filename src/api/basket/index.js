@@ -7,7 +7,7 @@ import { schema } from './model'
 export Basket, { schema } from './model'
 
 const router = new Router()
-const { title, subtitle, selfLink, thumbnail, price } = schema.tree
+const { title, subtitle, selfLink, thumbnail, price, googleId } = schema.tree
 
 /**
  * @api {post} /basket Create basket
@@ -27,7 +27,7 @@ const { title, subtitle, selfLink, thumbnail, price } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ title, subtitle, selfLink, thumbnail, price }),
+  body({ title, subtitle, selfLink, thumbnail, price, googleId }),
   create)
 
 /**
@@ -80,7 +80,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ title, subtitle, selfLink, thumbnail, price }),
+  body({ title, subtitle, selfLink, thumbnail, price, googleId }),
   update)
 
 /**

@@ -10,9 +10,9 @@ Bibliotheca REST API
 - git clone DevChallengeServer
 - cd DevChallengeServer
 - npm install
+- set json and master key in a .env file
 
 ### dev
-
 - start mongodb
 - npm run dev
 

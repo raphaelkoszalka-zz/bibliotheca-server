@@ -29,7 +29,6 @@ Bibliotheca REST API
 - request body validator - bodymen
 - standard error responses - querymen and bodymen error handlers
 
-
 ### code scaffolded (for prototyping only) with Yeoman
 - generator-rest
 

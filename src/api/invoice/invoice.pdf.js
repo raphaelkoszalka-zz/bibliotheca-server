@@ -1,15 +1,14 @@
-export const generatePdf = function() {
+import * as fs from 'fs';
+import * as pdf from 'html-pdf';
+
+export const generatePdf = function(body) {
   
-  var fs = require('fs');
-  var pdf = require('html-pdf');
+  const options = { format: 'Letter' };
+  const html = fs.readFileSync('/var/server/bibliotheca/src/api/invoice/invoice.html', 'utf8');
   
-  var html = fs.readFileSync('/var/server/bibliotheca/src/api/invoice/invoice.html', 'utf8');
-  var options = { format: 'Letter' };
-  
-  pdf.create(html, options).toFile('/var/www/bibliotheca/invoices/pdf_from_api.pdf', function(err, res) {
+  pdf.create(html, options).toFile('/var/www/bibliotheca/invoices/' + body.id + '.pdf', function(err, res) {
     if (err) return console.log(err);
     console.log(res);
-    success(res, 302);
   });
   
 }

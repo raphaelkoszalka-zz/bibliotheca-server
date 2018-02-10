@@ -3,25 +3,12 @@ import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
+import { generatePdf  } from './invoice.pdf'
 import { success, notFound } from '../../services/response/'
 export Invoice, { schema } from './model'
 
-
-
-const generatePdf = function() {
-  var fs = require('fs');
-  var pdf = require('html-pdf');
-  var html = fs.readFileSync('/var/server/bibliotheca/src/api/invoice/invoice.html', 'utf8');
-  var options = { format: 'Letter' };
-  pdf.create(html, options).toFile('/var/www/bibliotheca/invoices/pdf_from_api.pdf', function(err, res) {
-    if (err) return console.log(err);
-    console.log(res);
-    success(res, 302);
-  });
-}
-
 const router = new Router()
-const { html, price, items ,title, itemPrice, userName, userId } = schema.tree
+const { price, items ,title, itemPrice, userName, userId } = schema.tree
 
 /**
  * @api {post} /invoice Create invoice
@@ -38,7 +25,7 @@ const { html, price, items ,title, itemPrice, userName, userId } = schema.tree
  * @apiError 404 Invoice not found.
  */
 router.post('/',
-  body({ html, price, items ,title, itemPrice, userName, userId }),
+  body({ price, items ,title, itemPrice, userName, userId }),
   create)
 
 /**
@@ -77,7 +64,7 @@ router.get('/:id',
  * @apiError 404 Invoice not found.
  */
 router.put('/:id',
-  body({ html, price, items ,title, itemPrice, userName, userId }),
+  body({ price, items ,title, itemPrice, userName, userId }),
   update)
 
 /**

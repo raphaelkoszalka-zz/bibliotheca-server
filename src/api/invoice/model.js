@@ -1,9 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
 const invoiceSchema = new Schema({
-  html: {
-    type: String
-  },
   price: {
     type: String
   },
@@ -29,13 +26,7 @@ invoiceSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      html: this.html,
-      price: this.price,
-      items: this.items,
-      userName: this.userName,
-      userId: this.userId,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt
+      pdfUrl: 'http://bibliotheca.raphael.website/invoices/' + this.id + '.pdf'
     }
 
     return full ? {

@@ -11,6 +11,7 @@ beforeEach(async () => {
   invoice = await Invoice.create({})
 })
 
+// @todo: rewrite POST test
 test('POST /invoice 201', async () => {
   const { status, body } = await request(app())
     .post(`${apiRoot}`)

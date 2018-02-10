@@ -1,8 +1,10 @@
 import { success, notFound } from '../../services/response/'
+import { generatePdf  } from './invoice.pdf'
 import { Invoice } from '.'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Invoice.create(body)
+    .then(generatePdf(body))
     .then((invoice) => invoice.view(true))
     .then(success(res, 201))
     .catch(next)

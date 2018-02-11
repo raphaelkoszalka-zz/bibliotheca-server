@@ -8,7 +8,7 @@ import { success, notFound } from '../../services/response/'
 export Invoice, { schema } from './model'
 
 const router = new Router()
-const { price, items ,title, itemPrice, userName, userId } = schema.tree
+const { price, items, userName, userId } = schema.tree
 
 /**
  * @api {post} /invoice Create invoice
@@ -25,7 +25,7 @@ const { price, items ,title, itemPrice, userName, userId } = schema.tree
  * @apiError 404 Invoice not found.
  */
 router.post('/',
-  body({ price, items ,title, itemPrice, userName, userId }),
+  body({ price, items, userName, userId }),
   create)
 
 /**
@@ -64,7 +64,7 @@ router.get('/:id',
  * @apiError 404 Invoice not found.
  */
 router.put('/:id',
-  body({ price, items ,title, itemPrice, userName, userId }),
+  body({ price, items, userName, userId }),
   update)
 
 /**

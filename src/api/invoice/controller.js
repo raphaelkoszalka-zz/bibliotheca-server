@@ -2,12 +2,13 @@ import { success, notFound } from '../../services/response/'
 import { generatePdf  } from './invoice.pdf'
 import { Invoice } from '.'
 
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) => {
+  generatePdf(body)
   Invoice.create(body)
-    .then(generatePdf(body))
     .then((invoice) => invoice.view(true))
     .then(success(res, 201))
     .catch(next)
+}
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Invoice.find(query, select, cursor)

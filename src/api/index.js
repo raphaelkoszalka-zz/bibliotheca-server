@@ -3,6 +3,7 @@ import auth from './auth';
 import basket from './basket'
 import history from './history'
 import invoice from './invoice'
+import user from './user'
 
 const router = new Router();
 
@@ -34,5 +35,6 @@ router.use('/auth', auth);
 router.use('/basket', basket)
 router.use('/history', history)
 router.use('/invoice', invoice)
+router.use('/user', user)
 
 export default router;

@@ -7,9 +7,11 @@ export const create = ({ user, bodymen: { body } }, res, next) =>
     .then(success(res, 201))
     .catch(next)
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
+export const index = ({ querymen: { query, select, cursor } }, res, next) => {
+  let queryId = query.keywords.toString();
+  queryId = queryId.replace('/i','').replace('/', '').replace(/ /g, '', '');
   Basket.count(query)
-    .then(count => Basket.find(query, select, cursor)
+    .then(count => Basket.find({queryId: queryId}, select, cursor)
       .populate('userId')
       .then((baskets) => ({
         count,
@@ -18,6 +20,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     )
     .then(success(res))
     .catch(next)
+}
+  
 
 export const show = ({ params }, res, next) =>
   Basket.findById(params.id)

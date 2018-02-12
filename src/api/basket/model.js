@@ -23,6 +23,9 @@ const basketSchema = new Schema({
   },
   googleId: {
     type: String
+  },
+  queryId: {
+    type: String
   }
 }, {
   timestamps: true,
@@ -44,6 +47,7 @@ basketSchema.methods = {
       thumbnail: this.thumbnail,
       price: this.price,
       googleId: this.googleId,
+      queryId: this.queryId,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

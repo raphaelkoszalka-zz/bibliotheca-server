@@ -26,7 +26,7 @@ invoiceSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      pdfUrl: 'https://bibliotheca.raphael.website/invoices/' + this.id + '.pdf'
+      pdfUrl: 'https://bibliotheca.raphael.website/invoices/' + this.userId + '.pdf'
     }
 
     return full ? {

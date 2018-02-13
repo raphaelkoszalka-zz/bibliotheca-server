@@ -19,14 +19,16 @@ const userSchema = new Schema({
     trim: true
   },
   services: {
-    facebook: String,
-    github: String,
     google: String
   },
   role: {
     type: String,
     enum: roles,
     default: 'user'
+  },
+  language: {
+    type: String,
+    default: 'en'
   },
   picture: {
     type: String,
@@ -52,7 +54,7 @@ userSchema.path('email').set(function (email) {
 userSchema.methods = {
   view (full) {
     let view = {};
-    let fields = ['id', 'name', 'picture'];
+    let fields = ['id', 'name', 'picture', 'email', 'language'];
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
@@ -66,7 +68,7 @@ userSchema.methods = {
 userSchema.statics = {
   roles,
 
-  createFromService ({ service, id, email, name, picture }) {
+  createFromService ({ service, id, email, name, picture, language }) {
     return this.findOne({ $or: [{ [`services.${service}`]: id }, { email }] }).then((user) => {
       if (user) {
         user.services[service] = id;
@@ -74,13 +76,13 @@ userSchema.statics = {
         user.picture = picture;
         return user.save()
       } else {
-        return this.create({ services: { [service]: id }, email, name, picture })
+        return this.create({ services: { [service]: id }, email, name, picture, language })
       }
     })
   }
 };
 
-userSchema.plugin(mongooseKeywords, { paths: ['email', 'name'] });
+userSchema.plugin(mongooseKeywords, { paths: ['email', 'name', 'language'] });
 
 const model = mongoose.model('User', userSchema);
 

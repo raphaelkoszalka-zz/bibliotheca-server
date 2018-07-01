@@ -5,7 +5,7 @@ export const create = ({ user, bodymen: { body } }, res, next) =>
   History.create({ ...body, userId: user })
     .then((history) => history.view(true))
     .then(success(res, 201))
-    .catch(next)
+    .catch(next);
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   History.count(query)
@@ -17,7 +17,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 export const show = ({ params }, res, next) =>
   History.findById(params.id)
@@ -25,7 +25,7 @@ export const show = ({ params }, res, next) =>
     .then(notFound(res))
     .then((history) => history ? history.view() : null)
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 export const update = ({ user, bodymen: { body }, params }, res, next) =>
   History.findById(params.id)
